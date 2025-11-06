@@ -3,12 +3,12 @@ module.exports = function (eleventyConfig) {
 		return new Date().getFullYear();
 	});
   
-  eleventyConfig.addPassthroughCopy({ "src/dev/tukars/styles": "styles" });
-  eleventyConfig.addPassthroughCopy({ "src/dev/tukars/scripts": "scripts" });
+  eleventyConfig.addPassthroughCopy({ "src/styles": "styles" });
+  eleventyConfig.addPassthroughCopy({ "src/scripts": "scripts" });
 	
   return {
     dir: {
-      input: "src/dev/tukars/pages",
+      input: "src/pages",
       output: "_site",
       includes: "../includes",
       layouts: "../layouts"
