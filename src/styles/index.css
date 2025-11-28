@@ -4,7 +4,7 @@
   --test-green: #007700;
   --test-grey: #5a1a1a;
   --page-bg-color: linear-gradient(to right, #001a0e, #171a18);
-  --banner-blur: 8px;
+  --banner-blur: 0.6vw;
   --banner-url: url('/video/sample.webp');
   --banner-height: 25vh;
   --banner-aspect-query: 18/9; /* Update the related media query */
@@ -44,16 +44,37 @@ header {
   width: 100%;
   min-height: var(--banner-height);
   overflow: hidden;
+}
+
+header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
   background-image: var(--banner-url);
   background-size: cover;
-  background-position: center center;
+  background-position: center;
   background-repeat: repeat-x;
   mask-image: linear-gradient(to bottom, black 0%, 90%, transparent 100%);
   filter: blur(var(--banner-blur));
+  z-index: 0;
+}
+
+header h1 {
+  margin: 0;
+  position: relative;
+  z-index: 1;
+  display: block;
+  text-align: center;
+  font-family: 'Noto Serif', serif;
+  font-weight: 600;
+  font-size: 3rem;
+  color: white;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 @media (min-aspect-ratio: 18/9) {
-  header {
+  header::before {
     background-size: calc(100vh*var(--banner-aspect-query));
   }
 }
