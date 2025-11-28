@@ -6,7 +6,7 @@
   --page-bg-color: linear-gradient(to right, #001a0e, #171a18);
   --banner-blur: 0.6vw;
   --banner-url: url('/video/sample.webp');
-  --banner-height: 25vh;
+  --banner-height: 270px;
   --banner-aspect-query: 18/9; /* Update the related media query */
 }
 
@@ -68,12 +68,12 @@ header h1 {
   display: block;
   text-align: center;
   font-family: 'Noto Serif', serif;
-  font-weight: 600;
-  font-size: 8vh;
+  font-weight: 700;
+  font-size: 96px;
   color: white;
   top: 50%;
   transform: translateY(-50%);
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: -2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 /*
