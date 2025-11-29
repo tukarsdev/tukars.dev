@@ -18,11 +18,23 @@
 
     <main>
       <nav>
-        <a href="/">Home</a>
+        {% set title = "Blog" %}
+        {% set blog_title_1 = "When fixed point is better than floating point" %}
+        {% set blog_summary_1 = "Fixed point is uniform." %}
+        {% set blog_title_2 = "HTML is poorly designed" %}
+        {% set blog_summary_2 = "HTMX is obviously better" %}
+        {% set blog_title_3 = "C++ is just really bad" %}
+        {% set blog_summary_3 = "template <class T> stuff imagined by the insane" %}
+        {% include "src/layouts/blog.njk" %}
+        {#
         <a href="/projects/">Projects</a>
-        <a href="/about/">About</a>
+        <a href="/about/">Blog</a>
+        <a href="/contact/">Contact
+          <span>Github</span>
+          <span>Email</span>
+        </a>#}
       </nav>
-      {{ content | safe }}
+      {# {{ content | safe }} #}
     </main>
 
     <footer>
