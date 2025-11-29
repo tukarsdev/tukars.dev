@@ -1,0 +1,14 @@
+{% extends "src/layouts/container.njk" %}
+{% set title = "Blog" %}
+
+{% block content %}
+  {% set link_title = blog_title_1 %}
+  {% set link_text = blog_summary_1 %}
+  {% include "src/layouts/link.njk" %}
+  {% set link_title = blog_title_2 %}
+  {% set link_text = blog_summary_2 %}
+  {% include "src/layouts/link.njk" %}
+  {% set link_title = blog_title_3 %}
+  {% set link_text = blog_summary_3 %}
+  {% include "src/layouts/link.njk" %}
+{% endblock %}
