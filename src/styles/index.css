@@ -1,10 +1,12 @@
 :root {
-  --dark-green: #001a0e;
+  --background: hsl(100 3% 12%);
+  --header: hsl(100 6% 15%);
+  --link-hover: hsl(100 10% 20%);
+  --link-active: hsl(100 10% 30%);
   --dark-grey: #171a18;
   --test-green: #007700;
   --test-grey: #5a1a1a;
-  --white-text: #ededed;
-  --page-bg-color: #1a1f1c; /*linear-gradient(to right, #001a0e, #171a18);*/
+  --white-text: hsl(85 8% 84%); /* #cbcbcb */
   --banner-blur: 0.6vw;
   --banner-url: url('/video/sample.webp');
   --banner-height: 270px;
@@ -13,18 +15,109 @@
 
 * {
 	box-sizing: border-box;
-	font-family: 'Noto Serif', 'Arial';
-}
-
-h1, h2, h3, h4, h5, h6 {
-	font-family: 'Noto Sans';
+	font-family: 'Noto Sans', sans-serif;
+  color: var(--white-text);
+  corner-shape: squircle;
 }
 
 html {
 	overflow-y: scroll;
-  background-color: #000;
-  background: var(--page-bg-color);
+  background-color: var(--background);
 }
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Noto Serif', serif;
+}
+
+/* header should not be responsible for visual style */
+/* should be responsible for positioning (max width) */
+header {
+  display: flex;
+  background-color: var(--header);
+  margin: 12px;
+  min-height: 80px;
+  height: 80px;
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.37) 0px 1px 4px 0px;
+}
+
+header * {
+  font-family: 'Noto Sans';
+  list-style-type: none;
+}
+
+#header-container {
+  display: flex;
+  flex: 1;
+}
+
+#header-container * {
+  height: 100%;
+}
+
+#header-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 100%;
+  min-width: 100%;
+}
+
+#header-nav > * {
+  height: 100%;
+  min-height: 100%;
+}
+
+#header-left, #header-right { 
+  flex: 1 1 auto; 
+  display: flex; 
+}
+
+#header-center {
+  justify-content: center;
+  flex: 1 0 auto;
+}
+
+#header-right { 
+  justify-content: flex-end; 
+}
+
+#navigation {
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+}
+
+#navigation a {
+  padding: 12px 16px;
+  border-radius: 50% / 100%;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 18px;
+  transition: 0.1s ease-in-out;
+}
+
+
+#navigation a:hover {
+  background-color: var(--link-hover);
+}
+
+#navigation a.nav-active {
+  background-color: var(--link-active);
+}
+
+
+#navigation > li {
+  height: fit-content;
+}
+
+
 
 html, body {
 	height: 100%;
@@ -39,69 +132,6 @@ body {
   margin: 0;
   background-attachment: fixed;
   background-color: #0000;
-  color: var(--white-text);
-}
-
-header {
-  position: relative;
-  width: 100%;
-  min-height: var(--banner-height);
-  overflow: hidden;
-}
-
-header::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: var(--banner-url);
-  background-size: cover;
-  background-position: center;
-  background-repeat: repeat-x;
-  mask-image: linear-gradient(to bottom, black 0%, 90%, transparent 100%);
-  filter: blur(var(--banner-blur));
-  z-index: 0;
-}
-
-header h1 {
-  margin: 0;
-  position: relative;
-  width: fit-content;
-  margin: auto;
-  z-index: 1;
-  display: block;
-  text-align: center;
-  font-family: 'Noto Serif', serif;
-  font-weight: 700;
-  font-size: 6rem;
-  color: var(--white-text);
-  top: 50%;
-  transform: translateY(-50%);
-  text-shadow: -2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-@media (max-width: 640px) {
-  header h1 {
-    font-size: 3.5rem;
-  }
-}
-
-/*
-header h1::before {
-  content: '';
-  position: absolute;
-  inset: -0.1em -0.2em;
-  background: rgba(0, 0, 0, 0.5);
-  box-shadow: 0px 0px 20px 20px rgba(0, 0, 0, 0.5);
-  border-radius: 20px;
-  filter: blur(2px);
-  z-index: -1;
-}
-  */
-
-@media (min-aspect-ratio: 18/9) {
-  header::before {
-    background-size: calc(100vh*var(--banner-aspect-query));
-  }
 }
 
 main {
@@ -112,25 +142,8 @@ main {
   margin:auto;
 }
 
-span {
-  color: #a0a0a0;
-}
-
-/* maybe thin grey borders instead */
-.container {
-  margin-top: 50px;
-  background-color: #0000;
-  padding:20px;
-  border-radius: 40px;
-  border-style: solid;
-  border-width: 2px;
-  border-color: #fff0;
-  box-shadow: 0 0 8px 1px #fff0;
-}
-
 footer {
   background: #3330;
-  color: var(--white-text);
   text-align: center;
   padding: 1rem;
 }
