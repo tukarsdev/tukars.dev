@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,48 +12,47 @@
   </head>
 
   <body>
-    <header>
-      <nav id="header-nav">
-        <div id="header-left"></div>
-        <div id="header-center">
-          <div id="navigation">
-            <a id="nav-overview" href="/">Overview</a>
-            <a id="nav-articles" href="/articles">Articles</a>
-            <a id="nav-projects" href="/projects">Projects</a>
-            <a id="nav-about" href="/about">About</a>
-            <a id="nav-contact" href="/contact">Contact</a>
-          </ul>
-        </div>
-        <div id="header-right">
-          <button>💡</button>
-        </div>
-      </nav>
-    </header>
+    <div id="app">
+      <header>
+        <nav id="header-left"></nav>
+        <nav id="header-center">
+          <a id="nav-overview" class="button-radio button-radio-active" href="/">Overview</a>
+          <a id="nav-articles" class="button-radio" href="/articles">Articles</a>
+          <a id="nav-projects" class="button-radio" href="/projects">Projects</a>
+          <a id="nav-about" class="button-radio" href="/about">About</a>
+          <a id="nav-contact" class="button-radio" href="/contact">Contact</a>
+        </nav>
+        <nav id="header-right">
+          <button class="button">💡</button>
+        </nav>
+      </header>
 
-    <main>
-      <nav>
-        {% set title = "Blog" %}
-        {% set blog_title_1 = "When fixed point is better than floating point" %}
-        {% set blog_summary_1 = "Fixed point is uniform." %}
-        {% set blog_title_2 = "HTML is poorly designed" %}
-        {% set blog_summary_2 = "HTMX is obviously better" %}
-        {% set blog_title_3 = "C++ is just really bad" %}
-        {% set blog_summary_3 = "template <class T> stuff imagined by the insane" %}
-        {% include "src/layouts/blog.njk" %}
-        {#
-        <a href="/projects/">Projects</a>
-        <a href="/about/">Blog</a>
-        <a href="/contact/">Contact
-          <span>Github</span>
-          <span>Email</span>
-        </a>#}
-      </nav>
-      {# {{ content | safe }} #}
-    </main>
+      <main>
+        <nav>
+          {% set title = "Blog" %}
+          {% set blog_title_1 = "When fixed point is better than floating point" %}
+          {% set blog_summary_1 = "Fixed point is uniform." %}
+          {% set blog_title_2 = "HTML is poorly designed" %}
+          {% set blog_summary_2 = "HTMX is obviously better" %}
+          {% set blog_title_3 = "C++ is just really bad" %}
+          {% set blog_summary_3 = "template <class T> stuff imagined by the insane" %}
+          {% include "src/layouts/blog.njk" %}
+          
+          {#
+          <a href="/projects/">Projects</a>
+          <a href="/about/">Blog</a>
+          <a href="/contact/">Contact
+            <span>Github</span>
+            <span>Email</span>
+          </a>#}
+        </nav>
+        {# {{ content | safe }} #}
+      </main>
 
-    <footer>
-      <p>© {% year %} tukars</p>
-    </footer>
-    <script src="/scripts/index.js"></script>
+      <footer>
+        <p>© {% year %} tukars</p>
+      </footer>
+      <script src="/scripts/index.js"></script>
+    </div>
   </body>
 </html>
