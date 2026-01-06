@@ -8,6 +8,14 @@
     --headings-weight: 600;
     --headings-margin-bottom: 1rem;
     
+    --link-underline-color: #fff;
+    --link-underline-hover: #ff0;
+    --link-underline-active: #0f0;
+    --link-underline-thickness: 0.15em;
+    --link-underline-offset: 0.22em;
+    --link-transition: 1.2s ease-in-out;
+    
+    
     --button-padding: 12px 16px;
     --button-font-weight: 500;
     --button-transition: 0.1s ease-in-out;
@@ -18,14 +26,14 @@
     --header-height: 80px;
     --header-margin-top: 6px;
     --header-padding: 16px;
-    --header-gap: 6px;
+    --header-gap: 16px;
     
     --footer-margin: 6px;
     
     --box-shadow: rgba(0, 0, 0, 0.37) 0px 1px 4px 0px;
     --border-radius-small: 6px;
     --border-radius-medium: 12px;
-    --border-radius-large: 20px;
+    --border-radius-large: 16px;
     --border-radius-rounded: 50%/100%;
     
     /* Theming */
@@ -104,10 +112,36 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: var(--headings-margin-bottom);
 }
 
+/*
 a {
-    text-decoration: none;
+    text-decoration: underline;
+    text-decoration-color: #fff;/* var(--link-underline-color);
+    text-decoration-style: solid;
+    text-underline-offset: var(--link-underline-offset);
+    text-decoration-skip-ink: none;
+    text-decoration-thickness: var(--link-underline-thickness);
     color: inherit;
+    transition: text-decoration-color 2s ease;
 }
+
+a:hover {
+    text-decoration-color: #ff0;/* var(--link-underline-hover);
+}
+*/
+
+a {
+    text-decoration: underline;
+    text-decoration-color: hsl(130 5% 70%);
+    text-decoration-thickness: var(--link-underline-thickness);
+    text-underline-offset: var(--link-underline-offset);
+    transition: 0.2s !important;
+    transition-property: text-decoration-color;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    
+}
+
+a:hover { text-decoration-color: hsl(130, 100%, 70%); ; }
 
 
 img {
@@ -129,16 +163,24 @@ ul, ol {
 
 /* Component styling */
 
-.button, .button-radio {
+
+
+.button, .link-radio {
     padding: var(--button-padding);
-    border-radius: var(--border-radius-rounded);
+    border-radius: var(--border-radius-large);
     font-weight: var(--button-font-weight);
     transition: var(--button-transition);
 }
 
+@supports (corner-shape: squircle) {
+    .button {
+        border-radius: var(--border-radius-rounded);
+    }
+}
+
 /*TODO: FIX*/
 .button {
-    background-color: #f00;
+    background-color: #333;
 }
 
 .button-radio:hover {
@@ -173,11 +215,11 @@ header {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    background-color: var(--header);
     height: var(--header-height);
     margin-top: var(--header-margin-top);
     padding: var(--header-padding);
     border-radius: var(--border-radius-large);
+    background-color: var(--header);
     box-shadow: var(--box-shadow);
 }
 
@@ -193,6 +235,11 @@ header {
     justify-content: center;
     text-align: center;
     gap: var(--header-gap);
+}
+
+#nav-slider {
+    display: flex;
+    flex-direction: row;
 }
 
 #header-right {
