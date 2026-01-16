@@ -13,7 +13,7 @@
     --link-underline-active: #0f0;
     --link-underline-thickness: 0.15em;
     --link-underline-offset: 0.22em;
-    --link-transition: 1.2s ease-in-out;
+    --link-transition: 0.2s;
     
     
     --button-padding: 12px 16px;
@@ -23,10 +23,11 @@
     --page-width: 1000px;
     --body-padding: 6px;
     
-    --header-height: 80px;
+    --header-height: 40px;
     --header-margin-top: 6px;
+    --header-margin-bottom: 20px;
     --header-padding: 16px;
-    --header-gap: 16px;
+    --header-gap: 24px;
     
     --footer-margin: 6px;
     
@@ -37,8 +38,16 @@
     --border-radius-rounded: 50%/100%;
     
     /* Theming */
-    --light-background: hsl(100 3% 100%);
-    --dark-background: hsl(100 3% 12%);
+    --light-background: hsl(100 7% 100%);
+    --dark-background: hsl(100 7% 12%);
+    
+    --dark-level-1: hsl(0 0% 100% / 8%);
+    --dark-level-2: hsl(0 0% 100% / 15%);
+    --dark-level-3: hsl(0 0% 100% / 20%);
+    
+    --light-level-1: hsl(0 0% 0% / 8%);
+    --light-level-2: hsl(0 0% 0% / 15%);
+    --light-level-3: hsl(0 0% 0% / 20%);
     
     --light-header: hsl(100 6% 85%);
     --dark-header: hsl(100 6% 15%);
@@ -54,6 +63,12 @@
     
     --text: var(--light-text);
     --background: var(--light-background);
+    
+    --level-1: color-mix(in srgb, var(--background), var(--light-level-1));
+    --level-2: color-mix(in srgb, var(--background), var(--light-level-2));
+    --level-3: color-mix(in srgb, var(--background), var(--light-level-3));
+    --level-4: color-mix(in srgb, var(--background), var(--light-level-4));
+    
     --header: var(--light-header);
     --link-hover: var(--light-link-hover);
     --link-active: var(--light-link-active);
@@ -62,6 +77,12 @@
 @media (prefers-color-scheme: dark) {:root {
     --text: var(--dark-text);
     --background: var(--dark-background);
+    
+    --level-1: color-mix(in srgb, var(--background), var(--dark-level-1));
+    --level-2: color-mix(in srgb, var(--background), var(--dark-level-2));
+    --level-3: color-mix(in srgb, var(--background), var(--dark-level-3));
+    --level-4: color-mix(in srgb, var(--background), var(--dark-level-4));
+    
     --header: var(--dark-header);
     --link-hover: var(--dark-link-hover);
     --link-active: var(--dark-link-active);
@@ -70,6 +91,12 @@
 [data-theme="light"] {
     --text: var(--light-text);
     --background: var(--light-background);
+    
+    --level-1: color-mix(in srgb, var(--background), var(--light-level-1));
+    --level-2: color-mix(in srgb, var(--background), var(--light-level-2));
+    --level-3: color-mix(in srgb, var(--background), var(--light-level-3));
+    --level-4: color-mix(in srgb, var(--background), var(--light-level-4));
+    
     --header: var(--light-header);
     --link-hover: var(--light-link-hover);
     --link-active: var(--light-link-active);
@@ -78,6 +105,12 @@
 [data-theme="dark"] {
     --text: var(--dark-text);
     --background: var(--dark-background);
+    
+    --level-1: color-mix(in srgb, var(--background), var(--dark-level-1));
+    --level-2: color-mix(in srgb, var(--background), var(--dark-level-2));
+    --level-3: color-mix(in srgb, var(--background), var(--dark-level-3));
+    --level-4: color-mix(in srgb, var(--background), var(--dark-level-4));
+    
     --header: var(--dark-header);
     --link-hover: var(--dark-link-hover);
     --link-active: var(--dark-link-active);
@@ -134,7 +167,7 @@ a {
     text-decoration-color: hsl(130 5% 70%);
     text-decoration-thickness: var(--link-underline-thickness);
     text-underline-offset: var(--link-underline-offset);
-    transition: 0.2s !important;
+    transition: var(--link-transition);
     transition-property: text-decoration-color;
     font-family: var(--font-sans);
     font-weight: 600;
@@ -163,14 +196,6 @@ ul, ol {
 
 /* Component styling */
 
-
-
-.button, .link-radio {
-    padding: var(--button-padding);
-    border-radius: var(--border-radius-large);
-    font-weight: var(--button-font-weight);
-    transition: var(--button-transition);
-}
 
 @supports (corner-shape: squircle) {
     .button {
@@ -217,10 +242,11 @@ header {
     justify-content: space-between;
     height: var(--header-height);
     margin-top: var(--header-margin-top);
-    padding: var(--header-padding);
-    border-radius: var(--border-radius-large);
-    background-color: var(--header);
-    box-shadow: var(--box-shadow);
+    margin-bottom: var(--header-margin-bottom);
+}
+
+header > nav {
+    height: 100%;
 }
 
 #header-left, #header-right {
@@ -234,18 +260,43 @@ header {
     flex-direction: row;
     justify-content: center;
     text-align: center;
-    gap: var(--header-gap);
-}
-
-#nav-slider {
-    display: flex;
-    flex-direction: row;
+    
 }
 
 #header-right {
     text-align: right;
     justify-content: flex-end;
 }
+
+/* very sloppy design here */
+floating-dock {
+    box-sizing: content-box;
+    height: 100%;
+    border-radius: var(--border-radius-large);
+    background-color: var(--level-1);
+    box-shadow: var(--box-shadow);
+    align-content: center;
+    padding: 3px;
+}
+
+#nav-slider {
+    box-sizing: content-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+    gap: var(--header-gap);
+    background-color: var(--level-2);
+    border-radius: calc(var(--border-radius-large) - 3px);
+    padding: 0px 10px;
+}
+
+.link-radio {
+    text-decoration: none;
+    
+}
+
+
 
 /*TODO: FIX*/
 #header-right button {
